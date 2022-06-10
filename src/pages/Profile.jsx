@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {getAuth, updateProfile} from 'firebase/auth'
-import { updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { useNavigate, Link } from 'react-router-dom'
 import {toast} from 'react-toastify';
@@ -20,7 +20,7 @@ function Profile() {
     navigate('/');
   }
 
-  const onSubmit = () => {
+  const onSubmit = async (e) => {
     try {
       if(auth.currentUser.displayName !== name) {
         // Update display name in fb

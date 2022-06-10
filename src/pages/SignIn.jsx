@@ -4,6 +4,7 @@ import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import {toast} from 'react-toastify';
 import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import OAuth from '../components/OAuth';
 
 function SignIn() {
   const [showPassword,setShowPassword] = useState(false);
@@ -17,9 +18,10 @@ function SignIn() {
   const navigate = useNavigate();
 
   const onChange = (e) => {
+    console.log(e.target.value)
     setFormData((prevState) => ({
      ...prevState,
-     [e.target.id]: e.traget.value,
+     [e.target.id]: e.target.value,
     }))
   }
 
@@ -33,7 +35,7 @@ function SignIn() {
     (auth,email,password)
 
     if(userCredential.user) {
-      navigate('/')
+      navigate('/profile')
     }
     }
     catch(error) {
@@ -88,7 +90,7 @@ function SignIn() {
         </div>
       </form>
 
-      {/* Google OAuth */}
+      <OAuth />
       <Link to ='/sign-up' className='registerLink'>
         Sign Up Instead
       </Link>

@@ -1,5 +1,5 @@
 import React, {useEffect,useState, useRef} from 'react'
-import { getAuth, onAuthStateChange } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 export const useAuthStatus = () => {
     const [loggedIn, seLoggedIn] = useState(false)
@@ -9,16 +9,15 @@ export const useAuthStatus = () => {
     useEffect(() => {
         if(isMounted) {
             const auth = getAuth()
-            onAuthStateChange(auth,(user) => {
+            onAuthStateChanged(auth,(user) => {
                 if(user) {
-                    setLoggIn(true)
+                    seLoggedIn(true)
                 }
                 setCheckingStatus(false);
             })
         }
         
     },[isMounted])
-  return (
-    {loggedIn, checkingStatus}
-  )
+  return {loggedIn, checkingStatus}
+  
 }
