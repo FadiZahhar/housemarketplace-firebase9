@@ -36,6 +36,7 @@ function Profile() {
       }
     }
     catch(error) {
+      console.log(error);
       toast.error('Could not update profile details')
     }
   }
@@ -49,7 +50,7 @@ function Profile() {
   return <div className='profile'>
     <header className="profileHeader">
       <p className="pageHeader">My Profile</p>
-      <button type="button" className="logOut" onClick={onLogout} />
+      <button type="button" className="logOut" onClick={onLogout}>Logout</button>
     </header>
 
     <main>
@@ -57,7 +58,7 @@ function Profile() {
         <p className='profileDetailsText'>Personal Details</p>
         <p
          className='changePersonalDetails' onClick={() => {
-           changeDetails && onsubmit()
+           changeDetails && onSubmit()
            setChangeDetails((prevState) => !prevState)
          }}>
            {changeDetails ? 'done' : 'change' }
@@ -81,7 +82,7 @@ function Profile() {
         id='email'
         className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
         disabled={!changeDetails}
-        value={name}
+        value={email}
         onChange={onChange}
         />
       </form>

@@ -47,9 +47,9 @@ function SignUp() {
       const formDataCopy = {...formData}
       delete formDataCopy.password
       formDataCopy.timestamp = serverTimestamp();
-      //await setDoc(doc(db,'users',user.uid), formDataCopy);
+      await setDoc(doc(db,'users',user.uid), formDataCopy);
 
-      navigate('/')
+      navigate('/profile')
     }
     catch(error) {
       toast.error('Something went wrong with the registration');
